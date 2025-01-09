@@ -20,27 +20,22 @@ public:
             cout << A[i] << endl;
         }
     }
-    void del(int index){
-        if (index>length && index>=0)
-        {
-            cout<<"Out of Bound";
-        }
-        else{
-        int x = A[index];
-        cout<< "Element deleted: " <<x <<endl;
-        for (int i = index; i < length-1; i++)
-        {
-            A[i]=A[i+1];
-        }
-        length--;
-        }
-    }
     ~Array()
     {
         delete[] A;
         cout << "Array destroyed" << endl;
     }
 };
+
+int ls(Array &obj,int val){
+    for (int i = 0; i < obj.length; i++)
+    {
+        if(val == obj.A[i]){
+            return i;
+        }
+    }
+    return -1;
+}
 
 int main()
 {
@@ -49,8 +44,6 @@ int main()
     arr.A[1]=2;
     arr.A[2]=3;
     arr.length =3;
-    arr.display();
-    arr.del(1);
-    arr.display();
+    cout<< ls(arr,3)<<endl;
     return 0;
 }

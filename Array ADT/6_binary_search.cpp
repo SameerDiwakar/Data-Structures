@@ -20,27 +20,31 @@ public:
             cout << A[i] << endl;
         }
     }
-    void del(int index){
-        if (index>length && index>=0)
-        {
-            cout<<"Out of Bound";
-        }
-        else{
-        int x = A[index];
-        cout<< "Element deleted: " <<x <<endl;
-        for (int i = index; i < length-1; i++)
-        {
-            A[i]=A[i+1];
-        }
-        length--;
-        }
-    }
     ~Array()
     {
         delete[] A;
         cout << "Array destroyed" << endl;
     }
 };
+
+int bs(Array &obj,int val){
+    int l = 0,h=obj.length-1;
+    while (l<=h)            
+    {
+        int mid = (l+h)/2;
+        if (val==obj.A[mid])
+        {       
+            return mid;
+        }
+        else if(val < obj.A[mid]){
+            h=mid-1;
+        }
+        else{
+            l=mid+1;
+        }
+    }
+    return -1;
+}
 
 int main()
 {
@@ -49,8 +53,6 @@ int main()
     arr.A[1]=2;
     arr.A[2]=3;
     arr.length =3;
-    arr.display();
-    arr.del(1);
-    arr.display();
+    cout<< bs(arr,3)<<endl;
     return 0;
 }

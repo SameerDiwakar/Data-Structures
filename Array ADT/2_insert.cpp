@@ -20,11 +20,6 @@ public:
             cout << A[i] << endl;
         }
     }
-    ~Array()
-    {
-        delete[] A;
-        cout << "Array destroyed" << endl;
-    }
     void insert(int index, int x){
         if (index>length && index>=0)
         {
@@ -38,6 +33,11 @@ public:
         A[index]=x;
         length++;
         }
+    }
+    ~Array()
+    {
+        delete[] A;
+        cout << "Array destroyed" << endl;
     }
 };
 
