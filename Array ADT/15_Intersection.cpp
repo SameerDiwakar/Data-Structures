@@ -16,11 +16,11 @@ public:
     }
     void display()
     {
+        cout << endl;
         for (int i = 0; i < length; i++)
         {
             cout << A[i] << endl;
         }
-        cout << endl;
     }
     ~Array()
     {
@@ -29,7 +29,7 @@ public:
     }
 };
 
-Array mergeArray(Array &obj1, Array &obj2)
+Array Intersection(Array &obj1, Array &obj2)
 {
     int i = 0, j = 0, k = 0;
     Array result(obj1.length + obj2.length);
@@ -38,22 +38,21 @@ Array mergeArray(Array &obj1, Array &obj2)
     {
         if (obj1.A[i] < obj2.A[j])
         {
-            result.A[k++] = obj1.A[i++];
+           i++;
         }
-        else
+        else if (obj1.A[i] > obj2.A[j])
         {
-            result.A[k++] = obj2.A[j++];
+            j++;
         }
+        else if(obj1.A[i] == obj2.A[j])
+        {
+            result.A[k++]=obj1.A[i++];
+            j++;
+        }
+        
     }
-    while (i < obj1.length)                          //for copying remaining elements
-    {
-        result.A[k++] = obj1.A[i++];
-    }
-    while (j < obj2.length)
-    {
-        result.A[k++] = obj2.A[j++];
-    }
-    result.length = obj1.length + obj2.length;
+ 
+    result.length = k;
     return result;
 }
 
@@ -68,18 +67,18 @@ int main()
     }
 
     Array arr2(5);
-    int initialValues2[] = {2, 7, 15, 16, 19};
+    int initialValues2[] = {2, 4, 15, 16, 20};
     arr2.length = sizeof(initialValues2) / sizeof(initialValues2[0]);
     for (int i = 0; i < arr2.length; i++)
     {
         arr2.A[i] = initialValues2[i];
     }
-    Array arr3 = mergeArray(arr1, arr2);
+    Array arr3 = Intersection(arr1, arr2);
     cout << "Array 1: ";
     arr1.display();
     cout << "Array 2: ";
     arr2.display();
-    cout << "Merged Array: ";
+    cout << "Intersection of Sorted Array: ";
     arr3.display();
 
     return 0;
