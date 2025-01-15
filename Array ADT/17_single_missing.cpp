@@ -11,7 +11,7 @@ int findMissingElement(int arr[], int size) {   //if first n natural numbers are
 }
 
 int findMissingElement2(int arr[], int size) {   //if first n natural numbers are not given
-    int l = arr[0];
+    int l = arr[0];  // or put the given lowest element as l
     int h = arr[size];
     int d = l-0;
     for (int i = 0; i < size; i++) {
